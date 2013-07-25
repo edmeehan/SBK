@@ -38,7 +38,11 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller']        = "entries/index";
+$route['entries/all']               = 'entries/index';
+$route['entries/new']               = 'entries/create';
+$route['entries/edit/(:num)']       = 'entries/edit/$1';
+
 $route['404_override'] = '';
 
 

@@ -38,11 +38,25 @@
 |
 */
 
-$route['default_controller']        = "entries/index";
-$route['entries/all']               = 'entries/index';
-$route['entries/new']               = 'entries/create';
-$route['entries/edit/(:num)']       = 'entries/edit/$1';
-
+$route['default_controller']        = "journal/index";
+// Journal Routes
+$route['journal/']                  = 'journal/index';
+$route['journal/new']               = 'journal/create';
+$route['journal/edit/(:num)']       = 'journal/edit/$1';
+$route['journal/delete/(:num)']     = 'journal/delete/$1';
+// Account Routes
+$route['account/']                  = 'account/index';
+$route['account/new']               = 'account/create';
+$route['account/edit/(:num)']       = 'account/edit/$1';
+$route['account/delete/(:num)']     = 'account/delete/$1';
+// Contact Routes
+$route['contact/']                  = 'contact/index';
+$route['contact/new']               = 'contact/create';
+$route['contact/edit/(:num)']       = 'contact/edit/$1';
+$route['contact/delete/(:num)']     = 'contact/delete/$1';
+// Report Routes
+$route['report/']                   = 'report/index';
+// Other Routes
 $route['404_override'] = '';
 
 

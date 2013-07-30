@@ -5193,3 +5193,19 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+.cap {
+  text-transform: capitalize;
+}
+.upper {
+  text-transform: uppercase;
+}
+nav.well {
+  padding: 2px;
+}
+nav.well .nav li a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+nav.well .nav li a i {
+  float: right;
+}

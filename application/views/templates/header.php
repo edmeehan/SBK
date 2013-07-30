@@ -1,3 +1,14 @@
+<?php
+    try
+    {
+        $this->lessphp->checkedCompile(BASEPATH.'../css/style.less',BASEPATH.'../css/style.css');
+        $this->lessphp->checkedCompile(BASEPATH.'../library/bootstrap/less/responsive.less',BASEPATH.'../css/responsive.css');
+    }
+    catch (exception $e)
+    {
+        echo "fatal error: " . $e->getMessage();
+    }
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -25,18 +36,23 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="brand" href="/">Simple Book Keeper</a>
+                        <a class="brand" href="/" title="Simple Book Keeper Dashboard">Simple Book Keeper</a>
                         <div class="nav-collapse collapse">
                             <ul class="nav">
-                                <li class="active">
-                                    <a href="/entries/new">New Entry</a>
+                                <li class="<?php if($current === 'journalNew'){ echo 'active';}  ?>">
+                                    <a href="/journal/new" title="Add Journal Entry"><i class="icon-plus"></i></a>
                                 </li>
-                                <li>
-                                    <a href="/entries/all">All Entries</a>
+                                <li class="<?php if($current === 'journalIndex'){ echo 'active';}  ?>">
+                                    <a href="/journal/" title="View Journal Entries">Journal Entries</a>
                                 </li>
-                                
-                                <li>
-                                    <a href="#about">Accounts</a>
+                                <li class="<?php if($current === 'accountIndex'){ echo 'active';}  ?>">
+                                    <a href="/account/" title="View/Edit Accounts">Accounts</a>
+                                </li>
+                                <li class="<?php if($current === 'contactIndex'){ echo 'active';}  ?>">
+                                    <a href="/contact/" title="View/Edit Contacts">Contacts</a>
+                                </li>
+                                <li class="<?php if($current === 'reportIndex'){ echo 'active';}  ?>">
+                                    <a href="/report/" title="View Reports">Reports</a>
                                 </li>
                             </ul>
                         </div>

@@ -9,18 +9,7 @@ class Contact extends CI_Controller
         $this->load->helper(array('form', 'url','language'));
         $this->load->library(array('form_validation','session'));
         $this->load->model('contact_model');
-        // Language files
-        $this->lang->load('contact');
-        $this->lang->load('form');
-        // Builds contact type array for dropdown
-        $this->contactTypeSelect = array('' => 'Select contact type');
-        if ($contactTypes = $this->contact_model->get_type())
-        {
-            foreach ($contactTypes as $type)
-            {
-                $this->contactTypeSelect[$type->id] = $type->label;
-            }
-        }
+        
     }
         
     public function index()
@@ -37,6 +26,15 @@ class Contact extends CI_Controller
     
     public function create_edit($contactID = FALSE)
     {
+        // Builds contact type array for dropdown
+        $this->contactTypeSelect = array('' => 'Select contact type');
+        if ($contactTypes = $this->contact_model->get_type())
+        {
+            foreach ($contactTypes as $type)
+            {
+                $this->contactTypeSelect[$type->id] = $type->label;
+            }
+        }
         // set contact type array to dropdown
         $data['contactTypeSelect'] = $this->contactTypeSelect;
         // check if create or edit mode

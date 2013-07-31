@@ -11,21 +11,23 @@
 
 <div class="row contact-index">
     <div class="span3">
-        <a href="/contact/new" class="btn btn-primary btn-large btn-block"><?php echo lang('contact.title_add');?></a>
-        <hr />
-        <nav class="well">
-        	<ul class="nav nav-list">
-        	    <?php foreach($contact as $types): ?>
-        	       <li class="">
-        	           <a href="#contact-<?php echo $types->label ?>" class="cap"><i class="icon-chevron-right"></i> <?php echo $types->label ?></a>
-    	           </li>
-        	    <?php endforeach; ?>
-        	</ul>
-        </nav>
+        <aside class="" data-spy="affix">
+        	<a href="/contact/new" class="btn btn-primary btn-large btn-block"><?php echo lang('contact.title_add');?></a>
+        	<hr />
+        	<nav class="well" id="asideNav">
+        		<ul class="nav nav-list">
+        		    <?php foreach($contact as $types): ?>
+        		       <li class="">
+        		           <a href="#contact<?php echo $types->label ?>" class="cap"><i class="icon-chevron-right"></i> <?php echo $types->label ?></a>
+        	    	           </li>
+        		    <?php endforeach; ?>
+        		</ul>
+        	</nav>
+        </aside>
     </div>
     <div class="span8 offset1">
         <?php foreach($contact as $types): ?>
-        <section id="#contact-<?php echo $types->label ?>" class="list-group">
+        <section id="contact<?php echo $types->label ?>" class="list-group">
         	<h2 class="cap"><?php echo $types->label ?></h2>
         	<table class="table table-striped table-hover">
         	    <thead>

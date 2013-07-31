@@ -5219,3 +5219,19 @@ select {
   width: 70px;
   text-align: right;
 }
+body {
+  padding-top: 60px;
+}
+aside.affix {
+  width: inherit;
+}
+@media (max-width: 767px) {
+  aside.affix {
+    position: static;
+  }
+}
+@media (max-width: 480px) {
+  aside.affix {
+    position: static;
+  }
+}

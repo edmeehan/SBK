@@ -1,5 +1,5 @@
                 <footer>
-                    Simple Book Keeping v1.0 Beta
+                    <?php echo lang('app.title').' '.lang('app.version'); ?>
                 </footer>
             </div>
         </div>

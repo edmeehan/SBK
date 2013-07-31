@@ -17,16 +17,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Simple Book Keeper - <?php echo $title ?></title>
+        <title><?php echo lang('app.title').' - '.$title; ?></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="/css/style.css" type="text/css" />
         <link rel="stylesheet" href="/css/responsive.css" type="text/css" />
-        <style type="text/css" media="screen">
-            body{padding-top:60px;}
-        </style>
-    </head>    <body id="header" onload="">
+    </head>    <body id="header" data-spy="scroll" data-target="#asideNav" data-offset="60">
         <div class="wrapper">
             <div class="navbar navbar-fixed-top">
                 <div class="navbar-inner">
@@ -36,23 +33,23 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="brand" href="/" title="Simple Book Keeper Dashboard">Simple Book Keeper</a>
+                        <a class="brand" href="/" title="Simple Book Keeper Dashboard"><?php echo lang('app.title'); ?></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav">
                                 <li class="<?php if($current === 'journalNew'){ echo 'active';}  ?>">
                                     <a href="/journal/new" title="Add Journal Entry"><i class="icon-plus"></i></a>
                                 </li>
                                 <li class="<?php if($current === 'journalIndex'){ echo 'active';}  ?>">
-                                    <a href="/journal/" title="View Journal Entries">Journal Entries</a>
+                                    <a href="/journal/" title="View Journal Entries"><?php echo lang('app.nav_journal'); ?></a>
                                 </li>
                                 <li class="<?php if($current === 'accountIndex'){ echo 'active';}  ?>">
-                                    <a href="/account/" title="View/Edit Accounts">Accounts</a>
+                                    <a href="/account/" title="View/Edit Accounts"><?php echo lang('app.nav_acct'); ?></a>
                                 </li>
                                 <li class="<?php if($current === 'contactIndex'){ echo 'active';}  ?>">
-                                    <a href="/contact/" title="View/Edit Contacts">Contacts</a>
+                                    <a href="/contact/" title="View/Edit Contacts"><?php echo lang('app.nav_cont'); ?></a>
                                 </li>
                                 <li class="<?php if($current === 'reportIndex'){ echo 'active';}  ?>">
-                                    <a href="/report/" title="View Reports">Reports</a>
+                                    <a href="/report/" title="View Reports"><?php echo lang('app.nav_rep'); ?></a>
                                 </li>
                             </ul>
                         </div>

@@ -8,19 +8,7 @@ class Account extends CI_Controller
         // Helpers Library Modal
         $this->load->helper(array('form', 'url','language'));
         $this->load->library(array('form_validation','session'));
-        $this->load->model('account_model');
-        // Language files
-        $this->lang->load('account');
-        $this->lang->load('form');
-        // Builds account type array for dropdown
-        $this->acctTypeSelect = array('' => 'Select account type');
-        if ($acctTypes = $this->account_model->get_type())
-        {
-            foreach ($acctTypes as $type)
-            {
-                $this->acctTypeSelect[$type->id] = $type->label;
-            }
-        }
+        $this->load->model('account_model');        
     }
         
     public function index()
@@ -37,6 +25,15 @@ class Account extends CI_Controller
     
     public function create_edit($acctID = FALSE)
     {
+        // Builds account type array for dropdown
+        $this->acctTypeSelect = array('' => 'Select account type');
+        if ($acctTypes = $this->account_model->get_type())
+        {
+            foreach ($acctTypes as $type)
+            {
+                $this->acctTypeSelect[$type->id] = $type->label;
+            }
+        }
         // set account type array to dropdown
         $data['acctTypeSelect'] = $this->acctTypeSelect;
         // check if create or edit mode

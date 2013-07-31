@@ -25,29 +25,29 @@
     </div>
     <div class="span8 offset1">
         <?php foreach($acct as $types): ?>
-        <section id="#account-<?php echo $types->label ?>">
+        <section id="#account-<?php echo $types->label ?>" class="account-group">
         	<h2 class="cap"><?php echo $types->label ?></h2>
         	<table class="table table-striped table-hover">
         	    <thead>
         	        <tr>
-        	            <th>Name</th>
-        	            <th>Actions</th>
+        	            <th class="account-name"><?php echo lang('form.table_name'); ?></th>
+        	            <th class="account-action"><?php echo lang('form.table_action'); ?></th>
         	        </tr>
         	    </thead>
         	    <?php foreach($types->accts as $accts): ?>
             	    <tr>
             	    	<td><?php echo $accts->label ?></td>
             	    	<td>
-            	    	    <div class="btn-group">
+            	    	    <div class="btn-group pull-right">
             	                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
             	                    <i class="icon-chevron-down"></i>
             	                </button>
             	                <ul class="dropdown-menu">
             	                    <li>
-            	                        <a href="/account/edit/<?php echo $accts->id ?>" class=""><i class="icon-edit"></i> Edit</a>
+            	                        <a href="/account/edit/<?php echo $accts->id ?>" class=""><i class="icon-edit"></i> <?php echo lang('form.button_edit') ?></a>
             	                    </li>
             	                    <li>
-            	                        <a href="/account/delete/<?php echo $accts->id ?>" class=""><i class="icon-remove"></i> Delete</a>
+            	                        <a href="/account/delete/<?php echo $accts->id ?>" class=""><i class="icon-remove"></i> <?php echo lang('form.button_delete') ?></a>
             	                    </li>
             	                </ul>
             	            </div>

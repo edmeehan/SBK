@@ -46,7 +46,7 @@
                 <button class="btn btn-primary"><i class="icon-ok icon-white"></i> <?php echo lang('form.button_submit'); ?></button>
                 <a href="/account" class="btn btn-link"><?php echo lang('form.button_cancel'); ?></a>
                 <?php if($current != 'accountCreate'): ?>
-                    <a href="/account/delete/<?php echo @$ID; ?>" class="btn btn-inverse pull-right"><?php echo lang('form.button_delete'); ?></a>
+                    <button class="btn btn-inverse pull-right"><?php echo lang('form.button_delete'); ?></button>
                 <?php endif; ?>
             </div>
         </div>

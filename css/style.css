@@ -5212,3 +5212,10 @@ nav.well .nav li a i {
 select {
   text-transform: capitalize;
 }
+.alert ul {
+  margin-bottom: 0;
+}
+.account-group .account-action {
+  width: 70px;
+  text-align: right;
+}

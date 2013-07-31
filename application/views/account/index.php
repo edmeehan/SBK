@@ -11,7 +11,7 @@
 
 <div class="row accounts-index">
     <div class="span3">
-        <a href="/account/new" class="btn btn-primary btn-large btn-block">New Account</a>
+        <a href="/account/new" class="btn btn-primary btn-large btn-block"><?php echo lang('account.title_add');?></a>
         <hr />
         <nav class="well">
         	<ul class="nav nav-list">
@@ -25,13 +25,13 @@
     </div>
     <div class="span8 offset1">
         <?php foreach($acct as $types): ?>
-        <section id="#account-<?php echo $types->label ?>" class="account-group">
+        <section id="#account-<?php echo $types->label ?>" class="list-group">
         	<h2 class="cap"><?php echo $types->label ?></h2>
         	<table class="table table-striped table-hover">
         	    <thead>
         	        <tr>
-        	            <th class="account-name"><?php echo lang('form.table_name'); ?></th>
-        	            <th class="account-action"><?php echo lang('form.table_action'); ?></th>
+        	            <th class="name"><?php echo lang('form.table_name'); ?></th>
+        	            <th class="action"><?php echo lang('form.table_action'); ?></th>
         	        </tr>
         	    </thead>
         	    <?php foreach($types->accts as $accts): ?>

@@ -1,72 +1,71 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Account_model extends CI_Model
+class Contact_model extends CI_Model
 {
-    public function tot_acct()
+
+    public function tot_contact()
     {
-        return $this->db->count_all_results('account');
+        return $this->db->count_all_results('contact');
     }
-    /**
-     * Get all accounts or accounts by type or all accounts grouped by type
-     */
-    public function get_acct($value = FALSE)
+
+    public function get_contact($value = FALSE)
     {
         if($value === FALSE)
         {
-            $query = $this->db->get('account');
+            $query = $this->db->get('contact');
             return $query->result();
         }
         elseif($value === 'grouped')
         {
-            $acctTypes = $this->get_type();
+            $contactTypes = $this->get_type();
             
-            foreach ($acctTypes as $type)
+            foreach ($contactTypes as $type)
             {
-                $query = $this->db->get_where('account', array('type_id' => $type->id));
-                $type->accts = $query->result();
+                $query = $this->db->get_where('contact', array('type_id' => $type->id));
+                $type->contacts = $query->result();
             }
             
-            return $acctTypes;
+            return $contactTypes;
         }
         elseif(is_numeric($value))
         {
-            $query = $this->db->get_where('account', array('id' => $value));
+            $query = $this->db->get_where('contact', array('id' => $value));
             return $query->row();
         }
     }
     
     public function get_type()
     {
-        $query = $this->db->get('account_type');
+        $query = $this->db->get('contact_type');
         return $query->result();
     }
-    
-    public function set_acct($value = FALSE)
+
+    public function set_contact($value = FALSE)
     {
         $data = array(
-            'label' => $this->input->post('acctLabelInput'),
-            'type_id' => $this->input->post('acctTypeSelect')
+            'label' => $this->input->post('contactLabelInput'),
+            'type_id' => $this->input->post('contactTypeSelect')
         );    
         
         if($value === FALSE)
         {
-            return $this->db->insert('account',$data);
+            return $this->db->insert('contact',$data);
         }
         elseif(is_numeric($value))
         {
-            return $this->db->update('account',$data,array('id'=>$value));
+            return $this->db->update('contact',$data,array('id'=>$value));
         }
     }
     
-    public function delete_acct($value = FALSE)
+    public function delete_contact($value = FALSE)
     {
         if($value !== FALSE)
         {
-            return $this->db->delete('account',array('id'=>$value));
+            return $this->db->delete('contact',array('id'=>$value));
         }
     }
-    
+ 
 }
 
-/* End of file account_model.php */
-/* Location: ./application/models/account_model.php */
+/* End of file contact_model.php */
+/* Location: ./application/models/contact_model.php */

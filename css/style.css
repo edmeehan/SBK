@@ -5215,7 +5215,7 @@ select {
 .alert ul {
   margin-bottom: 0;
 }
-.account-group .account-action {
+.list-group .action {
   width: 70px;
   text-align: right;
 }

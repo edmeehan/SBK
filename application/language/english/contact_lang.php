@@ -1,14 +1,16 @@
 <?php
 // Section Titles
-$lang['account.title']                  = 'Accounts';
-$lang['account.title_index']            = 'Manage Accounts';
-$lang['account.title_add']              = 'Create Account';
-$lang['account.title_edit']             = 'Edit Account';
-$lang['account.title_delete']           = 'Delete Account';
+$lang['contact.title']                  = 'Contacts';
+$lang['contact.title_index']            = 'Manage Contacts';
+$lang['contact.title_add']              = 'Create Contact';
+$lang['contact.title_edit']             = 'Edit Contact';
+$lang['contact.title_delete']           = 'Delete Contact';
 // Form Labels
-$lang['account.acct_type']              = 'Account Type';
-$lang['account.acct_label']             = 'Account Label';
+$lang['contact.acct_type']              = 'Contact Type';
+$lang['contact.acct_label']             = 'Contact Label';
+
+
 // Messages
-$lang['account.new_success']            = 'New account created!';
-$lang['account.edit_success']           = 'Account has been changed!';
-$lang['account.delete_success']         = 'Account has been deleted!';
+$lang['contact.new_success']            = 'New contact created!';
+$lang['contact.edit_success']           = 'Contact has been changed!';
+$lang['contact.delete_success']         = 'Contact has been deleted!';

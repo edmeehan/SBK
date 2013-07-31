@@ -13,9 +13,9 @@
 <? endif; ?>
 
 <?php if(@$ID):
-    echo form_open('account/edit/'.$ID);
+    echo form_open('contact/edit/'.$ID);
     else:
-    echo form_open('account/new');
+    echo form_open('contact/new');
     endif;
 ?>
     <div class="row">
@@ -23,17 +23,17 @@
             <?php echo form_fieldset($title); ?>
                 <div class="row">
                 	<div class="span10">
-                		<?php echo lang('account.acct_type','acctTypeSelect'); ?>
-                		<?php echo form_dropdown('acctTypeSelect',$acctTypeSelect,set_value('acctTypeSelect',@$acctType)); ?>
+                		<?php echo lang('contact.contact_type','contactTypeSelect'); ?>
+                		<?php echo form_dropdown('contactTypeSelect',$contactTypeSelect,set_value('contactTypeSelect',@$contactType)); ?>
                 		
-                		<?php echo lang('account.acct_label','acctLabelInput'); ?>
-                		<?php echo form_input('acctLabelInput',set_value('acctLabelInput',@$acctLabel)); ?>
+                		<?php echo lang('contact.contact_label','contactLabelInput'); ?>
+                		<?php echo form_input('contactLabelInput',set_value('contactLabelInput',@$contactLabel)); ?>
 
             		</div>
-            		<?php if($current != 'accountCreate'): ?>
+            		<?php if($current != 'contactCreate'): ?>
             		<div class="span2">
-                        <?php echo form_label('Account ID','acctIDInput'); ?>
-                        <?php echo form_input(array('name'=>'acctIDInput','class'=>'span1','disabled'=>'disabled','value' => @$acctID)); ?>
+                        <?php echo form_label('Contact ID','contactIDInput'); ?>
+                        <?php echo form_input(array('name'=>'contactIDInput','class'=>'span1','disabled'=>'disabled','value' => @$contactID)); ?>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -44,9 +44,9 @@
         <div class="span12">
             <div class="form-actions">
                 <button class="btn btn-primary"><i class="icon-ok icon-white"></i> <?php echo lang('form.button_submit'); ?></button>
-                <a href="/account" class="btn btn-link"><?php echo lang('form.button_cancel'); ?></a>
-                <?php if($current != 'accountCreate'): ?>
-                    <button class="btn btn-inverse pull-right"><?php echo lang('form.button_delete'); ?></button>
+                <a href="/contact" class="btn btn-link"><?php echo lang('form.button_cancel'); ?></a>
+                <?php if($current != 'contactCreate'): ?>
+                    <a href="/contact/delete/<?php echo @$ID; ?>" class="btn btn-inverse pull-right"><?php echo lang('form.button_delete'); ?></a>
                 <?php endif; ?>
             </div>
         </div>

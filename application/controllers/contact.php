@@ -8,101 +8,102 @@ class Contact extends CI_Controller
         // Helpers Library Modal
         $this->load->helper(array('form', 'url','language'));
         $this->load->library(array('form_validation','session'));
-        $this->load->model('account_model');
+        $this->load->model('contact_model');
         // Language files
         $this->lang->load('contact');
         $this->lang->load('form');
-        // Builds account type array for dropdown
-        $this->acctTypeSelect = array('' => 'Select account type');
-        if ($acctTypes = $this->account_model->get_type())
+        // Builds contact type array for dropdown
+        $this->contactTypeSelect = array('' => 'Select contact type');
+        if ($contactTypes = $this->contact_model->get_type())
         {
-            foreach ($acctTypes as $type)
+            foreach ($contactTypes as $type)
             {
-                $this->acctTypeSelect[$type->id] = $type->label;
+                $this->contactTypeSelect[$type->id] = $type->label;
             }
         }
     }
         
     public function index()
     {
-        // populate the list of accounts
+        // populate the list of contacts
         $data['current']        = 'contactIndex';
         $data['title']          = $this->lang->line('contact.title_index');
-        //$data['acct']           = $this->account_model->get_acct('grouped');
+        $data['contact']        = $this->contact_model->get_contact('grouped');
             
         $this->load->view('templates/header', $data);
         $this->load->view('contact/index', $data);
         $this->load->view('templates/footer', $data);
     }
     
-    public function create_edit($acctID = FALSE)
+    public function create_edit($contactID = FALSE)
     {
-        // set account type array to dropdown
-        $data['acctTypeSelect'] = $this->acctTypeSelect;
+        // set contact type array to dropdown
+        $data['contactTypeSelect'] = $this->contactTypeSelect;
         // check if create or edit mode
-        if($acctID === FALSE)
+        if($contactID === FALSE)
         {
             // Create New Account
-            $data['current']        = 'accountCreate';
-            $data['title']          = $this->lang->line('account.title_add');
+            $data['current']        = 'contactCreate';
+            $data['title']          = $this->lang->line('contact.title_add');
         }
         else
         {
             // Edit Account
-            $data['current']        = 'accountEdit';
-            $data['title']          = $this->lang->line('account.title_edit');
-            $data['ID']             = $acctID;
+            $data['current']        = 'contactEdit';
+            $data['title']          = $this->lang->line('contact.title_edit');
+            $data['ID']             = $contactID;
             
-            $acctData = $this->account_model->get_acct($acctID);
+            $contactData = $this->contact_model->get_contact($contactID);
   
-            $data['acctType']   = $acctData->type_id;
-            $data['acctLabel']  = $acctData->label;
-            $data['acctID']     = $acctData->id;
+            $data['contactType']   = $contactData->type_id;
+            $data['contactLabel']  = $contactData->label;
+            $data['contactID']     = $contactData->id;
         }
         
         // Set the validation rules
-        $this->form_validation->set_rules($this->account_validation_rules);
+        $this->form_validation->set_rules($this->contact_validation_rules);
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->view('templates/header', $data);
-            $this->load->view('account/single', $data);
+            $this->load->view('contact/single', $data);
             $this->load->view('templates/footer', $data);
         }
         else
         {
-            if($acctID === FALSE)
+            if($contactID === FALSE)
             {    
-                $this->account_model->set_acct();
-                $this->session->set_flashdata('success', lang('account.new_success'));
+                $this->contact_model->set_contact();
+                $this->session->set_flashdata('success', lang('contact.new_success'));
             }
             else
             {
-                $this->account_model->set_acct($acctID);
-                $this->session->set_flashdata('success', lang('account.edit_success'));
+                $this->contact_model->set_contact($contactID);
+                $this->session->set_flashdata('success', lang('contact.edit_success'));
             }    
-            redirect('account/');
+            redirect('contact/');
         }
     }
     
-    public function delete($acctID = FALSE)
+    public function delete($contactID = FALSE)
     {
-        $this->account_model->delete_acct($acctID);
-        $this->session->set_flashdata('success', lang('account.delete_success'));
-        redirect('account/');
+        $this->contact_model->delete_contact($contactID);
+        $this->session->set_flashdata('success', lang('contact.delete_success'));
+        redirect('contact/');
     }
 
-    private $account_validation_rules = array(
+    private $contact_validation_rules = array(
         array(
-            'field' => 'acctTypeSelect',
-            'label' => 'lang:account.acct_type',
+            'field' => 'contactTypeSelect',
+            'label' => 'lang:contact.contact_type',
             'rules' => 'required'
         ),
         array(
-            'field' => 'acctLabelInput',
-            'label' => 'lang:account.acct_label',
+            'field' => 'contactLabelInput',
+            'label' => 'lang:contact.contact_label',
             'rules' => 'required'
         )
     );
+
 }
 
 /* End of file contact.php */

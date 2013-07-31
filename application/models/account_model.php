@@ -8,19 +8,15 @@ class Account_model extends CI_Model
     }
     /**
      * Get all accounts or accounts by type or all accounts grouped by type
-     *
-     * @author Yorick Peterse - PyroCMS Dev Team
-     * @access public
-     * @return mixed
      */
-    public function get_acct($typeID = FALSE)
+    public function get_acct($value = FALSE)
     {
-        if($typeID === FALSE)
+        if($value === FALSE)
         {
             $query = $this->db->get('account');
             return $query->result();
         }
-        elseif($typeID === TRUE)
+        elseif($value === 'grouped')
         {
             $acctTypes = $this->get_type();
             
@@ -32,6 +28,11 @@ class Account_model extends CI_Model
             
             return $acctTypes;
         }
+        elseif(is_numeric($value))
+        {
+            $query = $this->db->get_where('account', array('id' => $value));
+            return $query->result();
+        }
     }
     
     public function get_type()
@@ -40,14 +41,17 @@ class Account_model extends CI_Model
         return $query->result();
     }
     
-    public function add_acct($data)
+    public function set_acct($acctID = FALSE)
     {
-        
-    }
-    
-    public function edit_acct($data,$acctID)
-    {
-        
+        if($acctID === FALSE)
+        {
+            $data = array(
+                'label' => $this->input->post('acctLabelInput'),
+                'type_id' => $this->input->post('acctTypeSelect')
+            );
+            
+            return $this->db->insert('account',$data);
+        }
     }
     
     public function delete_acct($acctID)

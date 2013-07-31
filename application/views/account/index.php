@@ -1,3 +1,14 @@
+<?php if($this->session->flashdata('success')): ?>
+    <div class="row">
+    	<div class="span12">
+    		<div class="alert alert-success">
+    		    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    		    <?php echo $this->session->flashdata('success'); ?>
+    		</div>
+    	</div>
+    </div>
+<?php endif; ?>
+
 <div class="row accounts-index">
     <div class="span3">
         <a href="/account/new" class="btn btn-primary btn-large btn-block">New Account</a>
@@ -24,7 +35,6 @@
         	        </tr>
         	    </thead>
         	    <?php foreach($types->accts as $accts): ?>
-        	    
             	    <tr>
             	    	<td><?php echo $accts->label ?></td>
             	    	<td>
@@ -34,10 +44,10 @@
             	                </button>
             	                <ul class="dropdown-menu">
             	                    <li>
-            	                        <a href="/entry/edit/<?php echo $accts->id ?>" class=""><i class="icon-edit"></i> Edit</a>
+            	                        <a href="/account/edit/<?php echo $accts->id ?>" class=""><i class="icon-edit"></i> Edit</a>
             	                    </li>
             	                    <li>
-            	                        <a href="/entry/delete/<?php echo $accts->id ?>" class=""><i class="icon-remove"></i> Delete</a>
+            	                        <a href="/account/delete/<?php echo $accts->id ?>" class=""><i class="icon-remove"></i> Delete</a>
             	                    </li>
             	                </ul>
             	            </div>

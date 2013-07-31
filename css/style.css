@@ -5209,3 +5209,6 @@ nav.well .nav li a {
 nav.well .nav li a i {
   float: right;
 }
+select {
+  text-transform: capitalize;
+}

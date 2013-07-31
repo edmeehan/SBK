@@ -1,34 +1,34 @@
-<form action="view_submit" method="get" accept-charset="utf-8">
+<?php echo validation_errors(); ?>
+
+<?php echo form_open('account/new'); ?>
     <div class="row">
         <section class="span12">
-            <fieldset>
-                <legend><?php echo $title; ?></legend>
+            <?php echo form_fieldset($title); ?>
                 <div class="row">
                 	<div class="span10">
-                	    <label for="">Account Type</label>
-                		<select name="" id="">
-                		    <option value="1">Asset</option>
-                		    <option value="2">Blah</option>
-                		    <option value="3">Blah</option>
-                		</select>
+                		<?php echo lang('account.acct_type','acctTypeSelect'); ?>
+                		<?php echo form_dropdown('acctTypeSelect',$acctTypeSelect,set_value('acctTypeSelect',@$acctType)); ?>
                 		
-                		<label for="">Account Label</label>
-                		<input type="text" name="" value="" id=""/>
+                		<?php echo lang('account.acct_label','acctLabelInput'); ?>
+                		<?php echo form_input('acctLabelInput',set_value('acctLabelInput',@$acctLabel)); ?>
+
             		</div>
+            		<?php if($current != 'accountCreate'): ?>
             		<div class="span2">
-                        <label for="entryId">Account ID</label>
-                        <input class="span1" type="text" name="entryId" value="" id="entryId" disabled="disabled"/>
+                        <?php echo form_label('Account ID','acctIDInput'); ?>
+                        <?php echo form_input(array('name'=>'acctIDInput','class'=>'span1','disabled'=>'disabled','value' => $acctID)); ?>
                     </div>
+                    <?php endif; ?>
                 </div>
-            </fieldset>
+            <?php echo form_fieldset_close(); ?>
         </section>
     </div>
     <div class="row">
         <div class="span12">
             <div class="form-actions">
-                <button class="btn btn-primary"><i class="icon-ok icon-white"></i> Save</button>
-                <button class="btn btn-link">Cancel</button>
-                <button class="btn btn-inverse pull-right">Delete</button>
+                <button class="btn btn-primary"><i class="icon-ok icon-white"></i> <?php echo lang('form.button_submit'); ?></button>
+                <button class="btn btn-link"><?php echo lang('form.button_cancel'); ?></button>
+                <button class="btn btn-inverse pull-right"><?php echo lang('form.button_delete'); ?></button>
             </div>
         </div>
     </div>

@@ -88,7 +88,31 @@ class Contact extends CI_Controller
         $this->session->set_flashdata('success', lang('contact.delete_success'));
         redirect('contact/');
     }
-
+    
+    public function json($method = FALSE,$ID = FALSE)
+    {
+        switch ($method) {
+            case 'contact':
+                if($ID !== FALSE){
+                    $jsonOBJ = $this->account_model->get_acct($ID);
+                }
+                break;
+            case 'contacts':
+                $jsonOBJ = $this->account_model->get_acct();
+                break;
+            case 'contacts_grouped':
+                $jsonOBJ = $this->account_model->get_acct('grouped');
+                break;
+            default:
+                $this->output
+                    ->set_output('error');
+                return;
+        }    
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($jsonOBJ));
+    }
+    
     private $contact_validation_rules = array(
         array(
             'field' => 'contactTypeSelect',

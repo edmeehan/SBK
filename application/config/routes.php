@@ -38,26 +38,30 @@
 |
 */
 
-$route['default_controller']        = "journal/index";
+$route['default_controller']            = "journal/index";
 // Journal Routes
-$route['journal/']                  = 'journal/index';
-$route['journal/new']               = 'journal/create_edit';
-$route['journal/edit/(:num)']       = 'journal/create_edit/$1';
-$route['journal/delete/(:num)']     = 'journal/delete/$1';
+$route['journal/']                      = 'journal/index';
+$route['journal/new']                   = 'journal/create_edit';
+$route['journal/edit/(:num)']           = 'journal/create_edit/$1';
+$route['journal/delete/(:num)']         = 'journal/delete/$1';
+$route['journal/json/(:any)/(:num)']    = 'journal/json/$1/$2';
+
 // Account Routes
-$route['account/']                  = 'account/index';
-$route['account/new']               = 'account/create_edit';
-$route['account/edit/(:num)']       = 'account/create_edit/$1';
-$route['account/delete/(:num)']     = 'account/delete/$1';
+$route['account/']                      = 'account/index';
+$route['account/new']                   = 'account/create_edit';
+$route['account/edit/(:num)']           = 'account/create_edit/$1';
+$route['account/delete/(:num)']         = 'account/delete/$1';
+$route['account/json/(:any)/(:num)']    = 'account/json/$1/$2';
 // Contact Routes
-$route['contact/']                  = 'contact/index';
-$route['contact/new']               = 'contact/create_edit';
-$route['contact/edit/(:num)']       = 'contact/create_edit/$1';
-$route['contact/delete/(:num)']     = 'contact/delete/$1';
+$route['contact/']                      = 'contact/index';
+$route['contact/new']                   = 'contact/create_edit';
+$route['contact/edit/(:num)']           = 'contact/create_edit/$1';
+$route['contact/delete/(:num)']         = 'contact/delete/$1';
+$route['contact/json/(:any)/(:num)']    = 'contact/json/$1/$2';
 // Report Routes
-$route['report/']                   = 'report/index';
+$route['report/']                       = 'report/index';
 // Other Routes
-$route['404_override'] = '';
+$route['404_override']                  = '';
 
 
 /* End of file routes.php */

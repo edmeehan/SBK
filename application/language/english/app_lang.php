@@ -6,6 +6,10 @@ $lang['app.nav_journal']                = 'Journal Entries';
 $lang['app.nav_acct']                   = 'Accounts';
 $lang['app.nav_cont']                   = 'Contacts';
 $lang['app.nav_rep']                    = 'Reports';
+
+$lang['app.date']                    = 'Date';
+$lang['app.desc']                    = 'Description';
+$lang['journal.file_input']          = 'Record';
 // Journal
 $lang['journal.title']                  = 'Journal Entries';
 $lang['journal.title_index']            = 'Manage Journal Entries';
@@ -29,15 +33,15 @@ $lang['journal.new_success']            = 'New journal entry created!';
 $lang['journal.edit_success']           = 'Journal entry has been changed!';
 $lang['journal.delete_success']         = 'Journal entry has been deleted!';
 // Button labels
-$lang['form.button_submit']                  = 'Save';
-$lang['form.button_cancel']                  = 'Cancel';
-$lang['form.button_delete']                  = 'Delete';
-$lang['form.button_edit']                    = 'Edit';
-$lang['form.button_addline']                 = 'Add a line';
+$lang['form.button_submit']             = 'Save';
+$lang['form.button_cancel']             = 'Cancel';
+$lang['form.button_delete']             = 'Delete';
+$lang['form.button_edit']               = 'Edit';
+$lang['form.button_addline']            = 'Add a line';
 // Table Headers
-$lang['form.table_name']                     = 'Name';
-$lang['form.table_action']                   = 'Actions';
-$lang['form.table_tot']                   = 'Totals:';
+$lang['form.table_name']                = 'Name';
+$lang['form.table_action']              = 'Actions';
+$lang['form.table_tot']                 = 'Totals:';
 // Account
 $lang['account.title']                  = 'Accounts';
 $lang['account.title_index']            = 'Manage Accounts';

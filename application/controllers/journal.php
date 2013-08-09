@@ -10,7 +10,9 @@ class Journal extends CI_Controller
         $this->load->helper(array('form', 'url','language'));
         $this->load->library(array('form_validation','session'));
         //$this->load->model('journal_model');
-
+        // Load acount and contact models
+        $this->load->model('account_model');
+        $this->load->model('contact_model');
         // Builds account type array for dropdown
         
     }
@@ -28,6 +30,8 @@ class Journal extends CI_Controller
     
     public function create_edit($journalID = FALSE)
     {
+        $data['contact_array'] = json_encode($this->contact_model->get_contact());
+        $data['account_array'] = json_encode($this->account_model->get_acct());
             
         if($journalID === FALSE)
         {

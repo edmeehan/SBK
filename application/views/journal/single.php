@@ -55,12 +55,11 @@
                             <td colspan="2"></td>
                         </tr>
                     </tfoot>
-                    <!--
-                    <tbody>
+                    <tbody id="journalentries">
                         <tr>
                             <td>
                                 <div class="input-append">
-                                    <input type="text" class="span2">
+                                    <input type="text" class="span2 account-input">
                                     <div class="btn-group">
                                         <button class="btn dropdown-toggle" data-toggle="" tabindex="">
                                             <i class="icon-list"></i>
@@ -83,7 +82,7 @@
                             
                             <td>
                                 <div class="input-append">
-                                    <input type="text" class="span2">
+                                    <input type="text" class="span2 contact-input">
                                     <div class="btn-group">
                                         <button class="btn dropdown-toggle" data-toggle="" tabindex="">
                                             <i class="icon-list"></i>
@@ -96,7 +95,6 @@
                             </td>
                         </tr>
                     </tbody>
-                    -->
                 </table>
                 <table class="table">
                     <tbody>
@@ -123,3 +121,7 @@
         </div>
     </div>
 </form>
+<script type="text/javascript" charset="utf-8">
+	contactsObj = <?php echo $contact_array; ?>;
+	accountsObj = <?php echo $account_array; ?>;
+</script>

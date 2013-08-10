@@ -87,7 +87,31 @@ class Account extends CI_Controller
         $this->session->set_flashdata('success', lang('account.delete_success'));
         redirect('account/');
     }
-
+    
+    public function json($method = FALSE,$ID = FALSE)
+    {
+        switch ($method) {
+            case 'account':
+                if($ID !== FALSE){
+                    $jsonOBJ = $this->account_model->get_acct($ID);
+                }
+                break;
+            case 'accounts':
+                $jsonOBJ = $this->account_model->get_acct();
+                break;
+            case 'accounts_grouped':
+                $jsonOBJ = $this->account_model->get_acct('grouped');
+                break;
+            default:
+                $this->output
+                    ->set_output('error');
+                return;
+        }    
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($jsonOBJ));
+    }
+    
     private $account_validation_rules = array(
         array(
             'field' => 'acctTypeSelect',

@@ -10,7 +10,9 @@ class Journal extends CI_Controller
         $this->load->helper(array('form', 'url','language'));
         $this->load->library(array('form_validation','session'));
         //$this->load->model('journal_model');
-
+        // Load acount and contact models
+        $this->load->model('account_model');
+        $this->load->model('contact_model');
         // Builds account type array for dropdown
         
     }
@@ -28,6 +30,8 @@ class Journal extends CI_Controller
     
     public function create_edit($journalID = FALSE)
     {
+        $data['contact_array'] = json_encode($this->contact_model->get_contact());
+        $data['account_array'] = json_encode($this->account_model->get_acct());
             
         if($journalID === FALSE)
         {
@@ -43,11 +47,49 @@ class Journal extends CI_Controller
             $data['ID']             = $journalID;
         }
         
+        $data['scripts'] = array('/lib/bootstrap-datepicker/bootstrap-datepicker.js','/journal/default.js','/journal/create_edit.js');
+        
         $this->load->view('templates/header', $data);
         $this->load->view('journal/single', $data);
         $this->load->view('templates/footer', $data);
     }
     
+    public function json($method = FALSE,$ID = FALSE)
+    {
+        switch ($method) {
+            case 'entry':
+                //if($ID !== FALSE){
+                    /* TODO now we have a json handshake going on... we can finish this */
+                    $jsonOBJ = $this->input->post();
+                //}
+                break;
+            case 'entry_line':
+                if($ID !== FALSE){
+                    //$jsonOBJ = $this->account_model->get_acct($ID);
+                }
+                break;
+            default:
+                $this->output
+                    ->set_output('error');
+                return;
+        }    
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($jsonOBJ));
+    }
+    
+    private $validation_rules = array(
+        array(
+            'field' => 'date',
+            'label' => 'lang:app.date',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'desc',
+            'label' => 'lang:app.desc',
+            'rules' => 'required'
+        )
+    );
 }
 
 /* End of file journal.php */

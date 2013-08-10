@@ -1,6 +1,6 @@
 [submodule "library/bootstrap"]
 	path = library/bootstrap
-	url = git@github.com:twitter/bootstrap.git
+	url = git@github.com:twbs/bootstrap.git
 [submodule "library/lessphp"]
 	path = library/lessphp
 	url = git@github.com:leafo/lessphp.git

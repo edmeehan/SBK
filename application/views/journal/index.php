@@ -27,10 +27,11 @@
                     </td>
                 </tr>
             </tfoot>
+            <?php foreach($journals as $journal): ?>
             <tr>
-                <td>1</td>
-                <td>07-24-2013</td>
-                <td>This is the description here</td>
+                <td><?php echo $journal->id; ?></td>
+                <td><?php echo $journal->date; ?></td>
+                <td><?php echo $journal->description;  ?></td>
                 <td><a href="">File Name</a></td>
                 <td>
                      <div class="btn-group">
@@ -39,86 +40,16 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                            	<a href="/entry/edit/1" class=""><i class="icon-edit"></i> Edit</a>
+                            	<a href="/journal/edit/<?php echo $journal->id; ?>" class=""><i class="icon-edit"></i> Edit</a>
                             </li>
                             <li>
-                            	<a href="/entry/delete/1" class=""><i class="icon-remove"></i> Delete</a>
+                            	<a href="/journal/delete/<?php echo $journal->id; ?>" class=""><i class="icon-remove"></i> Delete</a>
                             </li>
                         </ul>
                     </div>
-                    
-                    
                 </td>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>07-24-2013</td>
-                <td>This is the description here</td>
-                <td><a href="">File Name</a></td>
-                <td>
-                     <div class="btn-group">
-                        <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-chevron-down"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="/entry/edit/1" class=""><i class="icon-edit"></i> Edit</a>
-                            </li>
-                            <li>
-                                <a href="/entry/delete/1" class=""><i class="icon-remove"></i> Delete</a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>07-24-2013</td>
-                <td>This is the description here</td>
-                <td><a href="">File Name</a></td>
-                <td>
-                     <div class="btn-group">
-                        <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-chevron-down"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="/entry/edit/1" class=""><i class="icon-edit"></i> Edit</a>
-                            </li>
-                            <li>
-                                <a href="/entry/delete/1" class=""><i class="icon-remove"></i> Delete</a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>07-24-2013</td>
-                <td>This is the description here</td>
-                <td><a href="">File Name</a></td>
-                <td>
-                     <div class="btn-group">
-                        <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-chevron-down"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="/entry/edit/1" class=""><i class="icon-edit"></i> Edit</a>
-                            </li>
-                            <li>
-                                <a href="/entry/delete/1" class=""><i class="icon-remove"></i> Delete</a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    
-                </td>
-            </tr>
+            <?php endforeach; ?>
         </table>
     </section>
 </div>

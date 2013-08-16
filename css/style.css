@@ -5537,6 +5537,21 @@ body {
 aside.affix {
   width: inherit;
 }
+.table .acct {
+  width: 250px;
+}
+.table .cont {
+  width: auto;
+}
+.table .credit {
+  width: auto;
+}
+.table .debit {
+  width: auto;
+}
+.table .des {
+  width: auto;
+}
 @media (max-width: 767px) {
   aside.affix {
     position: static;

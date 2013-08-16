@@ -48,6 +48,7 @@ $lang['account.title_index']            = 'Manage Accounts';
 $lang['account.title_add']              = 'Create Account';
 $lang['account.title_edit']             = 'Edit Account';
 $lang['account.title_delete']           = 'Delete Account';
+$lang['account.title_select']           = 'Select Account';
 // Account Form Labels
 $lang['account.acct_type']              = 'Account Type';
 $lang['account.acct_label']             = 'Account Label';
@@ -61,6 +62,7 @@ $lang['contact.title_index']            = 'Manage Contacts';
 $lang['contact.title_add']              = 'Create Contact';
 $lang['contact.title_edit']             = 'Edit Contact';
 $lang['contact.title_delete']           = 'Delete Contact';
+$lang['contact.title_select']           = 'Select Contact';
 // Contact Form Labels
 $lang['contact.acct_type']              = 'Contact Type';
 $lang['contact.acct_label']             = 'Contact Label';

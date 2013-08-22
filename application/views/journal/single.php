@@ -1,9 +1,9 @@
 <?php include_once(APPPATH.'views/templates/validation-block.php'); ?>
 
 <?php if(@$ID):
-    echo form_open('journal/edit/'.$ID,'id="journalForm"');
+    echo form_open_multipart('journal/edit/'.$ID,'id="journalForm"');
     else:
-    echo form_open('journal/new','id="journalForm"');
+    echo form_open_multipart('journal/new','id="journalForm"');
     endif;
 ?>
 

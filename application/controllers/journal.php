@@ -68,6 +68,7 @@ class Journal extends CI_Controller
         // Set the validation rules
         if ($_POST)
         {
+                
             foreach($_POST['entry'] as $row)
             {
                 
@@ -108,7 +109,23 @@ class Journal extends CI_Controller
             }
         }
         
+        if($this->input->post('record_file')){
+            
+            $upload['upload_path'] = './uploads/';
+            $upload['allowed_types'] = 'pdf|jpg|gif|png';
+            //$upload['encrypt_name'] = TRUE;
+            
+            $this->load->library('upload', $upload);
+            
+            if(!$this->upload->do_upload('record_file')){
+                
+            }else{
+                
+            }
+        }
+        
         $this->form_validation->set_rules($this->validation_rules);
+        
         if ($this->form_validation->run() === FALSE)
         {
             	

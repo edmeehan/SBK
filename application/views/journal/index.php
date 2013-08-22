@@ -13,7 +13,7 @@
             <tfoot>
                 <tr>
                     <td colspan="5">
-                        <div class="pagination pagination-small">
+                        <!-- <div class="pagination pagination-small">
                             <ul>
                                 <li><a href="#">Prev</a></li>
                                 <li><a href="#">1</a></li>
@@ -23,7 +23,7 @@
                                 <li><a href="#">5</a></li>
                                 <li><a href="#">Next</a></li>
                             </ul>
-                        </div>
+                        </div> -->
                     </td>
                 </tr>
             </tfoot>
@@ -32,7 +32,13 @@
                 <td><?php echo $journal->id; ?></td>
                 <td><?php echo $journal->date; ?></td>
                 <td><?php echo $journal->description;  ?></td>
-                <td><a href="">File Name</a></td>
+                <td>
+                    <?php if(is_numeric($journal->record_id)): ?>
+                        <a href="/uploads/<?php echo $journal->name; ?>" target="_blank"><?php echo $journal->type; ?></a>
+                    <?php else: ?>
+                        No file
+                    <?php endif; ?>
+                </td>
                 <td>
                      <div class="btn-group">
                         <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">

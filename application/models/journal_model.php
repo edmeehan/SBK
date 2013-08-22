@@ -26,9 +26,9 @@ class Journal_model extends CI_Model
      */
     public function get_journal($value = FALSE)
     {
-        $this->db->select('*')
-                    ->from('journal');
-                    //->join('journal_files', 'journal_files.id = journal.record_id');
+        $this->db->select('journal.*, journal_files.name, journal_files.type, journal_files.path')
+                    ->from('journal')
+                    ->join('journal_files', 'journal_files.id = journal.record_id', 'left');
         
         $query = $this->db->get();
 

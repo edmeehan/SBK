@@ -32,6 +32,14 @@ class Journal extends CI_Controller
     
     public function create_edit($journalID = FALSE)
     {
+        $upload['upload_path'] = './uploads/';
+        $upload['allowed_types'] = 'pdf|jpg|gif|png';
+        $upload['response'] = FALSE;
+        $upload['encrypt_name'] = TRUE;
+            
+        $this->load->library('upload', $upload);
+        
+        $data['uploadError'] = FALSE;
         $data['contact_array'] = json_encode($this->contact_model->get_contact());
         $data['account_array'] = json_encode($this->account_model->get_acct());
             
@@ -107,26 +115,24 @@ class Journal extends CI_Controller
                     }
                 }
             }
-        }
-        
-        if($this->input->post('record_file')){
             
-            $upload['upload_path'] = './uploads/';
-            $upload['allowed_types'] = 'pdf|jpg|gif|png';
-            //$upload['encrypt_name'] = TRUE;
-            
-            $this->load->library('upload', $upload);
-            
-            if(!$this->upload->do_upload('record_file')){
-                
-            }else{
-                
+            if (!empty($_FILES['record_file']['name']))
+            {
+                if ( ! $this->upload->do_upload('record_file'))
+                {
+                    $data['uploadError'] = $this->upload->display_errors();
+                }
+                else
+                {
+                    $upload['response'] = $this->upload->data();
+                }
             }
+            
         }
         
         $this->form_validation->set_rules($this->validation_rules);
         
-        if ($this->form_validation->run() === FALSE)
+        if ($this->form_validation->run() === FALSE || $data['uploadError'])
         {
             	
             $data['scripts'] = array('/lib/bootstrap-datepicker/bootstrap-datepicker.js','/journal/default.js','/journal/create_edit.js');          
@@ -138,15 +144,15 @@ class Journal extends CI_Controller
         else
         {
             // Form is valid - let's ROCK!
+            $this->journal_model->set_journal($journalID,$upload['response']);
+            
             if($journalID === FALSE)
             {    
-                $this->journal_model->set_journal();
-                //$this->session->set_flashdata('success', lang('account.new_success'));
+                $this->session->set_flashdata('success', lang('account.new_success'));
             }
             else
             {
-                $this->journal_model->set_journal($journalID);
-                //$this->session->set_flashdata('success', lang('account.edit_success'));
+                $this->session->set_flashdata('success', lang('account.edit_success'));
             }    
             redirect('journal/');
         }

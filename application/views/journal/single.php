@@ -28,6 +28,7 @@
                 <div class="span6">
                     <?php echo lang('journal.file_input','record_file');  ?>
                     <?php echo form_upload('record_file',set_value('record_file',@$record_file)); ?>
+                    <?php echo form_hidden('record_id',@$journal->record_id) ?>
                 </div>
                 <?php if($current != 'journalCreate'): ?>
         	    <div class="span2">

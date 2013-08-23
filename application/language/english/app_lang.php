@@ -1,6 +1,6 @@
 <?php
 // Application
-$lang['app.title']                      = 'Simple Book Keeper';
+$lang['app.title']                      = 'SBK';
 $lang['app.version']                    = 'v1.0 Beta';
 $lang['app.nav_journal']                = 'Journal Entries';
 $lang['app.nav_acct']                   = 'Accounts';

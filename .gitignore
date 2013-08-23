@@ -11,3 +11,5 @@ application/logs/*
 !application/logs/.htaccess
 
 application/config/database.php
+
+uploads

@@ -20,15 +20,24 @@ class Journal_model extends CI_Model
 			return $query;
         }
     }
-    
+    /**
+     * Get all entries by journal ID
+     */
+    public function total_entry()
+    {
+         return $this->db->count_all_results('journal');
+    }
     /**
      * Get all journal entries
      */
-    public function get_journal($value = FALSE)
+    public function get_journal($page = FALSE, $count = 30)
     {
+        
         $this->db->select('journal.*, journal_files.name, journal_files.type, journal_files.path')
                     ->from('journal')
-                    ->join('journal_files', 'journal_files.id = journal.record_id', 'left');
+                    ->join('journal_files', 'journal_files.id = journal.record_id', 'left')
+                    ->order_by('date','desc')
+                    ->limit($count,$page);
         
         $query = $this->db->get();
 

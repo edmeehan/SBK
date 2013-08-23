@@ -1,3 +1,14 @@
+<?php if($this->session->flashdata('success')): ?>
+    <div class="row">
+        <div class="span12">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <?php echo $this->session->flashdata('success'); ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
 <div class="row">
     <section class="span12">
         <table class="table table-striped table-hover">
@@ -13,17 +24,19 @@
             <tfoot>
                 <tr>
                     <td colspan="5">
-                        <!-- <div class="pagination pagination-small">
+                        
+                        <div class="pagination pagination-small">
                             <ul>
-                                <li><a href="#">Prev</a></li>
+                                <?php echo $pagination; ?>
+                                <!-- <li><a href="#">Prev</a></li>
                                 <li><a href="#">1</a></li>
                                 <li><a href="#">2</a></li>
                                 <li><a href="#">3</a></li>
                                 <li><a href="#">4</a></li>
                                 <li><a href="#">5</a></li>
-                                <li><a href="#">Next</a></li>
+                                <li><a href="#">Next</a></li> -->
                             </ul>
-                        </div> -->
+                        </div>
                     </td>
                 </tr>
             </tfoot>

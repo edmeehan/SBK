@@ -8,7 +8,7 @@ class Journal extends CI_Controller
         parent::__construct();
         // Helpers Library Modal
         $this->load->helper(array('form', 'url','language'));
-        $this->load->library(array('form_validation','session'));
+        $this->load->library(array('form_validation','session','pagination'));
         $this->load->model('journal_model');
         // Load acount and contact models
         $this->load->model('account_model');
@@ -17,13 +17,31 @@ class Journal extends CI_Controller
         
     }
     
-    public function index()
+    public function index($page = 0)
     {
-
+        //TODO build a config settings page for this stuff    
+        $config['per_page'] = 30;
+        $config['base_url'] = '/journal/page/';
+        $config['total_rows'] = $this->journal_model->total_entry();
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        
         $data['title']   = 'Add new entry';
         $data['current'] = 'journalIndex';
         
-        $data['journals'] = $this->journal_model->get_journal();
+        if(!is_numeric($page)){ $page = 0;}
+        
+        $data['journals'] = $this->journal_model->get_journal($page,$config['per_page']);
+        
+        // Pagination
+        $this->pagination->initialize($config);
+        $data['pagination'] = $this->pagination->create_links();
         
         $this->load->view('templates/header', $data);
         $this->load->view('journal/index', $data);
@@ -148,11 +166,11 @@ class Journal extends CI_Controller
             
             if($journalID === FALSE)
             {    
-                $this->session->set_flashdata('success', lang('account.new_success'));
+                $this->session->set_flashdata('success', lang('journal.new_success'));
             }
             else
             {
-                $this->session->set_flashdata('success', lang('account.edit_success'));
+                $this->session->set_flashdata('success', lang('journal.edit_success'));
             }    
             redirect('journal/');
         }

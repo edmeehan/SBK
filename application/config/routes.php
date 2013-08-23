@@ -41,6 +41,8 @@
 $route['default_controller']            = "journal/index";
 // Journal Routes
 $route['journal/']                      = 'journal/index';
+$route['journal/page']                  = 'journal/index';
+$route['journal/page/(:any)']           = 'journal/index/$1';
 $route['journal/new']                   = 'journal/create_edit';
 $route['journal/edit/(:num)']           = 'journal/create_edit/$1';
 $route['journal/delete/(:num)']         = 'journal/delete/$1';

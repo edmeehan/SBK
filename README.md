@@ -21,7 +21,7 @@ Future Features
 Basic Install
 =====
 
-*Create a mysql database, and run the sql file /install directory
-*Modify the application configs for your environment (/application/config/config.php AND /application/config/database.php)
+* Create a mysql database, and run the sql file /install directory
+* Modify the application configs for your environment (/application/config/config.php AND /application/config/database.php)
 
 Got to the code ignitor project to learn more about how to config the app.

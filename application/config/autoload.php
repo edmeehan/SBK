@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database','lessphp');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('compatible');
+$autoload['helper'] = array();
 
 
 /*

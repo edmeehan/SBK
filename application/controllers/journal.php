@@ -7,7 +7,7 @@ class Journal extends CI_Controller
     {
         parent::__construct();
         // Helpers Library Modal
-        $this->load->helper(array('form', 'url','language'));
+        $this->load->helper(array('form', 'url','language','MY_form'));
         $this->load->library(array('form_validation','session','pagination'));
         $this->load->model('journal_model');
         // Load acount and contact models

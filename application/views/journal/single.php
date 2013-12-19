@@ -97,13 +97,13 @@
                             <td class="control-group">
                                 <div class="input-prepend">
                                     <span class="add-on">$</span>
-                                    <?php echo form_input('entry_value_debit['.$entry->id.']',set_value('entry_value_debit['.$entry->id.']',@$entry->value_debit),'class="span1"'); ?>
+                                    <?php echo form_number('entry_value_debit['.$entry->id.']',set_value('entry_value_debit['.$entry->id.']',@$entry->value_debit),'class="span1" step="0.01" pattern="[0-9]+([\,|\.][0-9]+)?"'); ?>
                                 </div>
                             </td>
                             <td class="control-group">
                                 <div class="input-prepend">
                                     <span class="add-on">$</span>
-                                    <?php echo form_input('entry_value_credit['.$entry->id.']',set_value('entry_value_credit['.$entry->id.']',@$entry->value_credit),'class="span1"'); ?>
+                                    <?php echo form_number('entry_value_credit['.$entry->id.']',set_value('entry_value_credit['.$entry->id.']',@$entry->value_credit),'class="span1" step="0.01" pattern="[0-9]+([\,|\.][0-9]+)?"'); ?>
                                 </div>
                             </td>
                             <td class="control-group">

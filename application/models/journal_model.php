@@ -108,8 +108,8 @@ class Journal_model extends CI_Model
                 'account_id' => $accID[$entry],
                 'contact_id' => $contID[$entry],
                 'description' => $descText[$entry],
-                'value_debit' => $valueDebit[$entry],
-                'value_credit' => $valueCredit[$entry]
+                'value_debit' => empty($valueDebit[$entry]) ? NULL : $valueDebit[$entry],
+                'value_credit' => empty($valueCredit[$entry]) ? NULL : $valueCredit[$entry]
             );
             
             if('newline' === substr($entry,0,7))
@@ -146,6 +146,19 @@ class Journal_model extends CI_Model
         else
         {
             $this->db->update('journal_files',$data,array('id'=>$id));
+        }
+    }
+    
+    /**
+     * Delete Journal and entries
+     */
+    public function delete_journal($value = FALSE)
+    {
+        if($value !== FALSE)
+        {
+            $this->db->delete('journal_line',array('journal_id'=>$value)); 
+            $this->db->delete('journal',array('id'=>$value));
+            return;
         }
     }
 }

@@ -29,7 +29,7 @@
                     <?php echo lang('journal.file_input','record_file');  ?>
                     <?php echo form_upload('record_file',set_value('record_file',@$record_file)); ?>
                     <?php echo form_hidden('record_id',@$journal->record_id) ?>
-                    <?php if($journal->name): ?>
+                    <?php if(@$journal->name): ?>
                         <a class="btn" href="/uploads/<?php echo $journal->name; ?>" target="_blank"><i class="icon icon-download"></i> View Record</a>
                     <?php endif; ?>
                 </div>

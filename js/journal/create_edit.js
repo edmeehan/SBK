@@ -8,10 +8,10 @@ $(function(){
       format: 'yyyy-mm-dd'
     });
     
-    
-    
+    $('#contactModal .input-entry,#accountModal .input-entry').on('click',journalManager,journalManager.pickedModal);
 });
 
+// TODO Remove the jquery selectors from CLASS, make more extensable and less bound to form
 function JournalManager(){
 	this.data = {};
 	this.form = {};
@@ -28,7 +28,8 @@ function JournalManager(){
 	this.totals.$credit = $('#creditTotal');
 	this.totals.$debit = $('#debitTotal');
 	this.totals.$alert = $('#totalAlert');
-	
+	// Modal Data
+	this.modal = {};
 	this.init();
 }
 
@@ -42,6 +43,19 @@ JournalManager.prototype.init = function(){
 	this.setTotals();
 	this.form.$addLine.click(this,this.addLine);
 	this.form.$form.submit(this,this.submitForm);
+};
+
+JournalManager.prototype.pickedModal = function(event){
+	var $target, searchString;
+	$target = $(event.currentTarget);
+	
+	event.data.form.$form.find(event.data.modal.searchString).val($target.html());
+};
+
+JournalManager.prototype.startModal = function(event){
+	var $target;
+	$target = $(event.currentTarget);
+	event.data.modal.searchString = '[name="entry_' + $target.attr('data-entry-type') + '[' + $target.attr('data-entry-id') + ']"]';
 };
 
 JournalManager.prototype.update = function(){
@@ -61,6 +75,8 @@ JournalManager.prototype.update = function(){
     this.form.$contactLabel.typeahead({
         source:this.data.contactsArray
     });
+    // Modal
+    $('.dropdown-toggle').on('click',this, this.startModal);
 };
 
 JournalManager.prototype.getID = function(label,arrayName){
@@ -172,7 +188,7 @@ JournalManager.prototype.addLine = function(event){
 	lineTemplate +=				'<input type="text" class="span2 account-input" value="" name="entry_account['+key+']">';
 	lineTemplate +=         	'<input type="hidden" value="" name="entry_account_id['+key+']">';
 	lineTemplate +=         	'<div class="btn-group">';
-	lineTemplate +=         		'<button class="btn dropdown-toggle" data-toggle="modal" data-target="#accountModal">';
+	lineTemplate +=         		'<button class="btn dropdown-toggle" data-toggle="modal" data-target="#accountModal" data-entry-id="'+key+'" data-entry-type="account">';
 	lineTemplate +=         			'<i class="icon-list"></i>';
 	lineTemplate +=              	'</button>';
 	lineTemplate +=       		'</div>';
@@ -195,7 +211,7 @@ JournalManager.prototype.addLine = function(event){
 	lineTemplate +=         	'<input type="text" class="span2 contact-input" value="" name="entry_contact['+key+']">';
 	lineTemplate +=             '<input type="hidden" value="" name="entry_contact_id['+key+']">';
 	lineTemplate +=           	'<div class="btn-group">';
-	lineTemplate +=             	'<button class="btn dropdown-toggle" data-toggle="modal" data-target="#contactModal">';
+	lineTemplate +=             	'<button class="btn dropdown-toggle" data-toggle="modal" data-target="#contactModal" data-entry-id="'+key+'" data-entry-type="contact">';
 	lineTemplate +=                 	'<i class="icon-list"></i>';
 	lineTemplate +=                	'</button>';
 	lineTemplate +=       		'</div>';

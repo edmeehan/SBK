@@ -5552,6 +5552,15 @@ aside.affix {
 .table .des {
   width: auto;
 }
+.modal-button-list .span6:nth-child(odd) {
+  margin-left: 0;
+}
+.modal-button-list .btn {
+  margin-bottom: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 @media (max-width: 767px) {
   aside.affix {
     position: static;

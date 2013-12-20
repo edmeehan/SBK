@@ -90,7 +90,7 @@
                                     <?php echo form_input('entry_account['.$entry->id.']',NULL,'class="span2 account-input" autocomplete="off"'); ?>
                                     <?php echo form_hidden('entry_account_id['.$entry->id.']', set_value('entry_account_id['.$entry->id.']',@$entry->account_id)); ?>
                                     <div class="btn-group">
-                                        <button class="btn dropdown-toggle" data-toggle="modal" data-target="#accountModal">
+                                        <button class="btn dropdown-toggle" data-toggle="modal" data-target="#accountModal" data-entry-id="<?php echo $entry->id; ?>" data-entry-type="account">
                                             <i class="icon-list"></i>
                                         </button>
                                     </div>
@@ -114,7 +114,7 @@
                                     <?php echo form_input('entry_contact['.$entry->id.']',NULL,'class="span2 contact-input" autocomplete="off"'); ?>
                                     <?php echo form_hidden('entry_contact_id['.$entry->id.']', set_value('entry_contact_id['.$entry->id.']',@$entry->contact_id)); ?>
                                     <div class="btn-group">
-                                        <button class="btn dropdown-toggle" data-toggle="modal" data-target="#contactModal">
+                                        <button class="btn dropdown-toggle" data-toggle="modal" data-target="#contactModal" data-entry-id="<?php echo $entry->id; ?>"  data-entry-type="contact">
                                             <i class="icon-list"></i>
                                         </button>
                                     </div>
@@ -151,6 +151,18 @@
 		<h3 id="myModalLabel"><?php echo lang('contact.title_select');  ?></h3>
 	</div>
 	<div class="modal-body">
+	    <?php foreach($contact as $types): ?>
+        <section class="modal-button-list">
+            <h4 class="cap"><?php echo $types->label ?></h4>
+            <div class="row-fluid">
+                <?php foreach($types->contacts as $contacts): ?>
+                    <div class="span6">
+                        <button class="btn btn-block input-entry" data-dismiss="modal" aria-hidden="true"><?php echo $contacts->label ?></button>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </section>
+        <?php endforeach; ?>
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">
@@ -167,6 +179,18 @@
 		<h3 id="myModalLabel"><?php echo lang('account.title_select');  ?></h3>
 	</div>
 	<div class="modal-body">
+	    <?php foreach($account as $types): ?>
+        <section class="modal-button-list">
+            <h4 class="cap"><?php echo $types->label ?></h4>
+            <div class="row-fluid">
+                <?php foreach($types->accts as $accts): ?>
+                    <div class="span6">
+                        <button class="btn btn-block input-entry" data-dismiss="modal" aria-hidden="true"><?php echo $accts->label ?></button>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </section>
+        <?php endforeach; ?>
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">

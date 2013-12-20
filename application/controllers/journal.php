@@ -83,6 +83,8 @@ class Journal extends CI_Controller
         $data['uploadError'] = FALSE;
         $data['contact_array'] = json_encode($this->contact_model->get_contact());
         $data['account_array'] = json_encode($this->account_model->get_acct());
+        $data['account']       = $this->account_model->get_acct('grouped');
+        $data['contact']       = $this->contact_model->get_contact('grouped');
             
         if($journalID === FALSE)
         {

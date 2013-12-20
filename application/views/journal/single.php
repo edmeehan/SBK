@@ -84,7 +84,7 @@
                             <td class="control-group <?php if(form_error('entry_account_id['.$entry->id.']')) echo 'error' ?>">
                                 <?php echo form_hidden('entry[]',set_value('entry[]',$entry->id)); ?>
                                 <div class="input-append">
-                                    <?php echo form_input('entry_account['.$entry->id.']',NULL,'class="span2 account-input"'); ?>
+                                    <?php echo form_input('entry_account['.$entry->id.']',NULL,'class="span2 account-input" autocomplete="off"'); ?>
                                     <?php echo form_hidden('entry_account_id['.$entry->id.']', set_value('entry_account_id['.$entry->id.']',@$entry->account_id)); ?>
                                     <div class="btn-group">
                                         <button class="btn dropdown-toggle" data-toggle="modal" data-target="#accountModal">
@@ -108,7 +108,7 @@
                             </td>
                             <td class="control-group">
                                 <div class="input-append">
-                                    <?php echo form_input('entry_contact['.$entry->id.']',NULL,'class="span2 contact-input"'); ?>
+                                    <?php echo form_input('entry_contact['.$entry->id.']',NULL,'class="span2 contact-input" autocomplete="off"'); ?>
                                     <?php echo form_hidden('entry_contact_id['.$entry->id.']', set_value('entry_contact_id['.$entry->id.']',@$entry->contact_id)); ?>
                                     <div class="btn-group">
                                         <button class="btn dropdown-toggle" data-toggle="modal" data-target="#contactModal">

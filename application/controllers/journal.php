@@ -3,6 +3,47 @@
 class Journal extends CI_Controller
 {
     
+    // Configs
+    public $paginationConfig = array(   
+        'per_page'              => 30,
+        'base_url'              => '/journal/page/',
+        'num_tag_open'          => '<li>',
+        'num_tag_close'         => '</li>',
+        'cur_tag_open'          => '<li class="active"><a href="#">',
+        'cur_tag_close'         => '</a></li>',
+        'prev_tag_open'         => '<li>',
+        'prev_tag_close'        => '</li>',
+        'next_tag_open'         => '<li>',
+        'next_tag_close'        => '</li>',
+        //'first_link'            => '<<',
+        'first_tag_open'        => '<li>',
+        'first_tag_close'       => '</li>',
+        //'last_link'             => '>>',
+        'last_tag_open'         => '<li>',
+        'last_tag_close'        => '</li>'
+    );
+    
+    public $uploadConfig = array(
+        'upload_path'           => './uploads/',
+        'allowed_types'         => 'pdf|jpg|gif|png',
+        'response'              => FALSE,
+        'encrypt_name'          => TRUE
+    );
+    
+    private $validation_rules = array(
+        // journal
+        array(
+            'field' => 'date',
+            'label' => 'lang:app.date',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'desc',
+            'label' => 'lang:app.desc',
+            'rules' => ''
+        )
+    );
+    
     public function __construct()
     {
         parent::__construct();
@@ -13,42 +54,20 @@ class Journal extends CI_Controller
         // Load acount and contact models
         $this->load->model('account_model');
         $this->load->model('contact_model');
-        // Builds account type array for dropdown
         
     }
     
     public function index($page = 0)
     {
-        //TODO build a config settings page for this stuff
-        $paginationConfig = array(   
-            'per_page'              => 30,
-            'base_url'              => '/journal/page/',
-            'total_rows'            => $this->journal_model->total_entry(),
-            'num_tag_open'          => '<li>',
-            'num_tag_close'         => '</li>',
-            'cur_tag_open'          => '<li class="active"><a href="#">',
-            'cur_tag_close'         => '</a></li>',
-            'prev_tag_open'         => '<li>',
-            'prev_tag_close'        => '</li>',
-            'next_tag_open'         => '<li>',
-            'next_tag_close'        => '</li>',
-            //'first_link'            => '<<',
-            'first_tag_open'        => '<li>',
-            'first_tag_close'       => '</li>',
-            //'last_link'             => '>>',
-            'last_tag_open'         => '<li>',
-            'last_tag_close'        => '</li>'
-        );
-        
-        $data['title']   = 'Add new entry';
-        $data['current'] = 'journalIndex';
-        
         if(!is_numeric($page)){ $page = 0;}
         
-        $data['journals'] = $this->journal_model->get_journal($page,$paginationConfig['per_page']);
-        
         // Pagination
-        $this->pagination->initialize($paginationConfig);
+        $this->paginationConfig['total_rows'] = $this->journal_model->total_entry();
+        $this->pagination->initialize($this->paginationConfig);
+        // View Data
+        $data['title']   = 'Add new entry';
+        $data['current'] = 'journalIndex';
+        $data['journals'] = $this->journal_model->get_journal($page,$this->paginationConfig['per_page']);
         $data['pagination'] = $this->pagination->create_links();
         
         $this->load->view('templates/header', $data);
@@ -58,12 +77,8 @@ class Journal extends CI_Controller
     
     public function create_edit($journalID = FALSE)
     {
-        $upload['upload_path'] = './uploads/';
-        $upload['allowed_types'] = 'pdf|jpg|gif|png';
-        $upload['response'] = FALSE;
-        $upload['encrypt_name'] = TRUE;
-            
-        $this->load->library('upload', $upload);
+          
+        $this->load->library('upload', $this->uploadConfig);
         
         $data['uploadError'] = FALSE;
         $data['contact_array'] = json_encode($this->contact_model->get_contact());
@@ -71,12 +86,11 @@ class Journal extends CI_Controller
             
         if($journalID === FALSE)
         {
-            // Create New Account
+            // Create New Journal
             $data['current']        = 'journalCreate';
             $data['title']          = $this->lang->line('journal.title_add');
             $data['journal']        = new stdClass();
             $data['journal']->entries = array();
-            
             
             if(!$_POST){
                 // populate with 2 new lines
@@ -96,7 +110,6 @@ class Journal extends CI_Controller
             $data['current']        = 'journalEdit';
             $data['title']          = $this->lang->line('journal.title_edit');
             $data['ID']             = $journalID;
-			
 			$data['journal']        = $this->journal_model->get_entry($journalID);
         }
         
@@ -151,7 +164,7 @@ class Journal extends CI_Controller
                 }
                 else
                 {
-                    $upload['response'] = $this->upload->data();
+                    $this->uploadConfig['response'] = $this->upload->data();
                 }
             }
             
@@ -163,6 +176,7 @@ class Journal extends CI_Controller
         {
             	
             $data['scripts'] = array('/lib/bootstrap-datepicker/bootstrap-datepicker.js','/journal/default.js','/journal/create_edit.js');          
+            
             $this->load->view('templates/header', $data);
             $this->load->view('journal/single', $data);
             $this->load->view('templates/footer', $data);
@@ -171,7 +185,7 @@ class Journal extends CI_Controller
         else
         {
             // Form is valid - let's ROCK!
-            $this->journal_model->set_journal($journalID,$upload['response']);
+            $this->journal_model->set_journal($journalID,$this->uploadConfig['response']);
             
             if($journalID === FALSE)
             {    
@@ -187,7 +201,7 @@ class Journal extends CI_Controller
     
     public function delete($journalID = FALSE)
     {
-        $this->journal_model->delete_journal($journalID);
+        $this->journal_model->delete_journal($journalID,$this->uploadConfig);
         $this->session->set_flashdata('success', lang('journal.delete_success'));
         redirect('journal/');
     }
@@ -216,19 +230,6 @@ class Journal extends CI_Controller
             ->set_output(json_encode($jsonOBJ));
     }
     
-    private $validation_rules = array(
-        // journal
-        array(
-            'field' => 'date',
-            'label' => 'lang:app.date',
-            'rules' => 'required'
-        ),
-        array(
-            'field' => 'desc',
-            'label' => 'lang:app.desc',
-            'rules' => ''
-        )
-    );
 }
 
 /* End of file journal.php */

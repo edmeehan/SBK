@@ -34,10 +34,10 @@ class Journal_model extends CI_Model
     {
         
         $this->db->select('journal.*, journal_files.name, journal_files.type, journal_files.path')
-                    ->from('journal')
-                    ->join('journal_files', 'journal_files.id = journal.record_id', 'left')
-                    ->order_by('date','desc')
-                    ->limit($count,$page);
+            ->from('journal')
+            ->join('journal_files', 'journal_files.id = journal.record_id', 'left')
+            ->order_by('date','desc')
+            ->limit($count,$page);
         
         $query = $this->db->get();
 
@@ -152,11 +152,21 @@ class Journal_model extends CI_Model
     /**
      * Delete Journal and entries
      */
-    public function delete_journal($value = FALSE)
+    public function delete_journal($value = FALSE, $config = FALSE)
     {
         if($value !== FALSE)
         {
+            // get journal
+            $query = $this->db->where('journal.id',$value)
+                ->join('journal_files', 'journal_files.id = journal.record_id', 'left')
+                ->get('journal')->row();
+            // delete file
+            if($query->name && $config){
+                unlink($config['upload_path'] . $query->name);
+            }
+            // delete all journal entrie lines
             $this->db->delete('journal_line',array('journal_id'=>$value)); 
+            // delete journal
             $this->db->delete('journal',array('id'=>$value));
             return;
         }

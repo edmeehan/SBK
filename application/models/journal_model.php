@@ -14,7 +14,10 @@ class Journal_model extends CI_Model
         }
         else
         {
-            $query = $this->db->get_where('journal',array('id'=>$value))->row();
+            $query = $this->db->where('journal.id',$value)
+                ->join('journal_files', 'journal_files.id = journal.record_id', 'left')
+                ->get('journal')->row();
+
             $query->entries = $this->db->get_where('journal_line', array('journal_id' => $value))->result();
 			 
 			return $query;
@@ -33,7 +36,7 @@ class Journal_model extends CI_Model
     public function get_journal($page = FALSE, $count = 30)
     {
         
-        $this->db->select('journal.*, journal_files.name, journal_files.type, journal_files.path')
+        $this->db->select('journal.*, journal_files.name, journal_files.type')
             ->from('journal')
             ->join('journal_files', 'journal_files.id = journal.record_id', 'left')
             ->order_by('date','desc')

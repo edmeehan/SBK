@@ -29,6 +29,9 @@
                     <?php echo lang('journal.file_input','record_file');  ?>
                     <?php echo form_upload('record_file',set_value('record_file',@$record_file)); ?>
                     <?php echo form_hidden('record_id',@$journal->record_id) ?>
+                    <?php if($journal->name): ?>
+                        <a class="btn" href="/uploads/<?php echo $journal->name; ?>" target="_blank"><i class="icon icon-download"></i> View Record</a>
+                    <?php endif; ?>
                 </div>
                 <?php if($current != 'journalCreate'): ?>
         	    <div class="span2">
@@ -148,9 +151,6 @@
 		<h3 id="myModalLabel"><?php echo lang('contact.title_select');  ?></h3>
 	</div>
 	<div class="modal-body">
-		<p>
-			One fine body…
-		</p>
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">
@@ -167,9 +167,6 @@
 		<h3 id="myModalLabel"><?php echo lang('account.title_select');  ?></h3>
 	</div>
 	<div class="modal-body">
-		<p>
-			One fine body…
-		</p>
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">

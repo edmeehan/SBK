@@ -16,6 +16,7 @@ class Journal_model extends CI_Model
         {
             $query = $this->db->where('journal.id',$value)
                 ->join('journal_files', 'journal_files.id = journal.record_id', 'left')
+                ->select('journal.*, journal_files.name, journal_files.type')
                 ->get('journal')->row();
 
             $query->entries = $this->db->get_where('journal_line', array('journal_id' => $value))->result();

@@ -1,6 +1,6 @@
 SBK (Simple Book Keeper)
 ==================
-PROJECT ABONDONED - But feel free to fork, if you would like to take over the project I will hand it over as long as it is a public project.
+PROJECT ABANDONED - But feel free to fork, if you would like to take over the project I will hand it over as long as it is a public project.
 
 SBK is built on code ignitor as a test project. It is a very simple way to do your business accounting using the double-entry bookkeeping system. There is currently no security or user functions, be warned, use on closed network only.
 
